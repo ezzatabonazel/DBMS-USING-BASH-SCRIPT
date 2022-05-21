@@ -9,7 +9,7 @@ do
 			       	createdb.sh
 				;;
 			2)
-				echo "soon"
+				connectdb.sh
 				;;
 
 			3)
