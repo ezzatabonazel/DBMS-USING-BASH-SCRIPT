@@ -10,7 +10,7 @@ then
 	do
 		case $REPLY in
 			1)
-				echo soon
+				. createtable.sh
 				;;
 			2)
 				 echo soon
