@@ -1,19 +1,21 @@
 #!/bin/bash
 
 # Get the table name from user 
-read -p "what is your table name" tname 
+read -p "what is your table name : " tname 
 
 if ! [ -z $tname ]                                                      #first check
 then
-      if[[ $tname =~ ^[0-9] ]]                                          #second check 
+      if [[ $tname =~ ^[0-9] ]]                                          #second check 
       then
 
          echo " ERROR: invalid table name"
       
-      elif[ -f $HOME/db/Databases/$ctdb/metadata/$tname ] && [ -f $HOME/db/Databases/$ctdb/Data/$tname ]                  #Third check 
-            
-            echo "ERROR: the table is already exists"
-      else                                            
+      elif [[ -f "$HOME/db/Databases/$ctdb/metadata/$tname" ]] & [[ -f "$HOME/db/Databases/$ctdb/Data/$tname" ]]                  #Third check 
+      then
+
+	    	  echo "ERROR: the table is already exists"
+      else    
+
             touch $HOME/db/Databases/$ctdb/Data/$tname                        #create file
             touch $HOME/db/Databases/$ctdb/metadata/$tname 
             echo "congrats your table is created successfully"
@@ -23,5 +25,4 @@ else
 fi
 
 
-for getdata in ${primaryCol[@]}
 

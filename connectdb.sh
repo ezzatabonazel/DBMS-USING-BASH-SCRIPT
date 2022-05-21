@@ -13,8 +13,8 @@ then
 				. createtable.sh
 				;;
 			2)
-				 echo soon
-                                ;;
+                                . listtables.sh
+				;;
 			3) 
 				.  droptable.sh
 				;;

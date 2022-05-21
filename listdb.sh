@@ -1,3 +1,9 @@
 #i/bin/bash
 
-ls $HOME/db/Databases/
+if  [ -n  "$(ls  $HOME/db/Databases/)" ]
+then
+        ls $HOME/db/Databases/
+
+else
+        echo " No Databases created yet "
+fi
