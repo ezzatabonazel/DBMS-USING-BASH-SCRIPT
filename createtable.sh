@@ -9,11 +9,12 @@ then
       then
 
          echo " ERROR: invalid table name"
-      
+      		exit;
       elif [[ -f "$HOME/db/Databases/$ctdb/metadata/$tname" ]] & [[ -f "$HOME/db/Databases/$ctdb/Data/$tname" ]]                  #Third check 
       then
 
 	    	  echo "ERROR: the table is already exists"
+		  exit;
       else    
 
             touch $HOME/db/Databases/$ctdb/Data/$tname                        #create file
@@ -22,6 +23,8 @@ then
       fi
 else
     echo "ERROR: Table name can not be empty"
+                exit
+
 fi
 
 # creat column 
@@ -29,35 +32,38 @@ fi
 read -p " Enter number of columns: " colnum
 
 
-for (( i=0; i<$colnum ; i++))
+for ((i=0;  i<colnum ; i++))
 do
       colmeta=""
-      read -p "enter column name" colname
-      if [-z $colname ]
+      read -p "enter column name : " colname
+      if [ -z $colname ]
       then 
             echo " colname cannot be empty "
-      elif [[ $colname=~ ^[0-9] ]]
+	    break;
+      elif [[ $colname =~ ^[0-9] ]]
       then 
             echo "Colname is not correct "
+	    break;
       else
             colmeta=$colname
       fi
       read -p "choice column data type string(s) number(n) [s:n]    " coldatatype
       case $coldatatype in 
-      "s" | "S") 
-                  colmeta=$colmeta:string 
-                  ;;
-      "n" | "N") 
-                  colmeta=$colmeta:number
-                  ;;
+			      "s" | "S") 
+                 			 colmeta=$colmeta:string 
+                 				 ;;
+     			      "n" | "N") 
+                 			 colmeta=$colmeta:number
+                 				 ;;
       esac
       read -p " is that column primary key (PK) ? [y/n]  " pk
       case $pk in 
-      "y" | "Y")
-                  colmeta=$colmeta:yes
-                  ;;
-      "n" | "N")  colmeta=$colmeta:no
-                  ;;
+     			 "y" | "Y")
+                 			 colmeta=$colmeta:yes
+                 				 ;;
+     			 "n" | "N")
+			       		 colmeta=$colmeta:no
+                 				 ;;
       esac
 echo $colmeta >> $HOME/db/Databases/$ctdb/metadata/$tname 
 
