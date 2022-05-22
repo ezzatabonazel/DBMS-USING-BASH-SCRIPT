@@ -13,7 +13,7 @@ then
 				. createtable.sh
 				;;
 			2)
-                                . listtables.sh
+                 . listtables.sh
 				;;
 			3) 
 				.  droptable.sh
