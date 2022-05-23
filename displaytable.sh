@@ -7,7 +7,7 @@
 
 read -p " Enter Table Name : " tablename 
 
-if [ -f /$HOME/db/Databases/$ctdb/Data/$tablename ] & [ -f /$HOME/db/Databases/$ctdb/metadata/$tablename ]
+if [ -f /$HOME/db/Databases/$ctdb/Data/$tablename ] && [ -f /$HOME/db/Databases/$ctdb/metadata/$tablename ]
 then
 	#chnage output record seperator by default is new line
 
