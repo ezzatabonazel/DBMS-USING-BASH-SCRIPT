@@ -13,4 +13,27 @@ do
 done
 echo $tabledata >> $HOME/db/Databases/ezzat/Data/$n
 }
-
+function insetcolumn {
+	tableName=$1
+	columnsNum=`awk -F, '{ if (NR==1) {print NF} }' "databases/$dbName/$tableName" `
+	columnNames=`awk -F, '{ if (NR==1) {print $0;} }' "databases/$dbName/$tableName" `
+	IFS=','
+	read -a colNameArr <<< "$columnNames"
+	echo "the columns of this table is : "${colNameArr[@]}
+	IFS=''
+	row=''
+	# #=======================
+	typeset -i i;
+    i=0
+    while [ $i -lt $columnsNum ] 
+    do
+        echo "enter ${colNameArr[$i]}"
+        read 
+        row="$row,$REPLY"
+		i=$i+1
+	done
+	row=${row#","}
+    echo "the new row is :" $row
+	echo $row>>databases/$dbName/${tableName}
+	echo "Data inserted successfully";
+}
