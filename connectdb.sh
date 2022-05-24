@@ -22,7 +22,7 @@ then
 				 echo soon
                                 ;;
 			5) 
-				 . displaytable.sh
+				select_from_table.sh
                                 ;;
 			6)
 				 echo soon
