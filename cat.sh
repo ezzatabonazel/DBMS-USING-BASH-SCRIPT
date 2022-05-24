@@ -1,7 +1,7 @@
 #cat /$HOME/db/Databases/ezzat/Data/xx | grep "12345"
 #cut -f3 -d: /$HOME/db/Databases/ezzat/metadata/xx
 
-pktname=`awk -F: '{if($3=="yes"){print $1}}' /$HOME/db/Databases/ezzat/metadata/xx`
+#pktname=`awk -F: '{if($3=="yes"){print $1}}' /$HOME/db/Databases/ezzat/metadata/xx`
 
 #echo "pk column name is $pktname"
 #fn=`awk -F: '{if($3=="yes"){print NR ;}}' /$HOME/db/Databases/ezzat/metadata/xx`
@@ -19,5 +19,9 @@ pktname=`awk -F: '{if($3=="yes"){print $1}}' /$HOME/db/Databases/ezzat/metadata/
 #done
 read  -p "enter  " pk
 #cat $HOME/db/Databases/ezzat/Data/xx | grep -w $pk
+fn=2
+#awk -F: '{if($3==$pk){print $0 ;}}' /$HOME/db/Databases/ezzat/metadata/xx
 
-awk -F: '{if($3=="yes"){print $0 ;}}' /$HOME/db/Databases/ezzat/metadata/xx
+#awk -F: -v awkvar="$fn" '{if(NR=awkvar){print $2;}}' $HOME/db/Databases/ezzat/metadata/ezzat
+awk -F: -v awkvar="$fn" ' NR== awkvar {print $2;}' $HOME/db/Databases/ezzat/metadata/ezzat
+
