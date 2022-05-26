@@ -10,15 +10,15 @@ then
 
          echo " ERROR: invalid table name"
       		exit;
-      elif [ -f metadata/$tname ] & [ -f Data/$tname ]                 #Third check 
+      elif [ -f ./Databases/$ctdb/metadata/$tname ] & [ -f ./Databases/$ctdb/Data/$tname ]                 #Third check 
       then
 
 	    	  echo "ERROR: the table is already exists"
 		  exit;
       else    
 
-            touch Data/$tname                        #create file
-            touch metadata/$tname 
+            touch ./Databases/$ctdb/Data/$tname                        #create file
+            touch ./Databases/$ctdb/metadata/$tname
             echo "congrats your table is created successfully"
       fi
 else
@@ -35,7 +35,8 @@ read -p " Enter number of columns: " colnum
 for ((i=0;  i<colnum ; i++))
 do
       colmeta=""
-      read -p "enter column name : " colname
+      
+            read -p "enter column name : " colname
       if [ -z $colname ]
       then 
             echo " colname cannot be empty "
@@ -47,25 +48,43 @@ do
       else
             colmeta=$colname
       fi
-      read -p "choose column data type string(s) number(n) [s:n]    " coldatatype
-      case $coldatatype in 
+      while true :
+      do
+            read -p "choose column data type string(s) number(n) [s:n]    " coldatatype
+            case $coldatatype in 
 			      "s" | "S") 
                  			 colmeta=$colmeta:string 
+                                    break;
                  				 ;;
      			      "n" | "N") 
                  			 colmeta=$colmeta:number
+                                    break
                  				 ;;
-      esac
-      read -p " is that column primary key (PK) ? [y/n]  " pk
-      case $pk in 
+                        *)
+                              echo "wrong choice :("
+                              continue
+                              ;;
+            esac
+      done
+      while true :
+      do
+            read -p " is that column primary key (PK) ? [y/n]  " pk
+            case $pk in 
      			 "y" | "Y")
                  			 colmeta=$colmeta:yes
+                                    break
                  				 ;;
      			 "n" | "N")
 			       		 colmeta=$colmeta:no
-                 				 ;;
-      esac
-echo $colmeta >> metadata/$tname s
+                                      break
+                                      ;;
+                 	      * )
+                             echo "wrong choice :("
+                              continue
+                              ;;			 
+            esac
+      done
+echo $colmeta >> ./Databases/$ctdb/metadata/$tname 
 done
 
 
