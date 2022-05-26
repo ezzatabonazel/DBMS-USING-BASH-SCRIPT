@@ -6,22 +6,25 @@ do
 		case  $REPLY in
 
 			1 )
-			       	createdb.sh
+			       	./createdb.sh
 				;;
 			2)
-				connectdb.sh
+				./connectdb.sh
 				;;
 
 			3)
 		
-			 	 listdb.sh
+			 	 ./listdb.sh
                 	        ;;
 			4)
 
-                        	 deletedb.sh
+                	./deletedb.sh
                        		 ;;
 			 5)  
 				 exit
 				 ;;
+			*)
+					echo "wrong choice :(" 
+					;;
 		 esac
 done

@@ -8,8 +8,8 @@ awk -F: 'BEGIN{ORS="\t"}{print $1}END{printf "\n"}' /$HOME/db/Databases/ezzat/me
 echo "insert your data by order of column names " 
 for i in `awk -F: 'BEGIN{ORS="\t"}{print $1}' /$HOME/db/Databases/ezzat/metadata/$n` 
 do 
-        read -p "enter data of colunm $i : " columndata
-        tabledata=$tabledata:$columndata
+        read -p "enter data of colunm $i : " rowdata
+        tabledata=$tabledata:$rowdata
 done
 echo $tabledata >> $HOME/db/Databases/ezzat/Data/$n
 }

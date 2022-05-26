@@ -10,15 +10,15 @@ then
 
          echo " ERROR: invalid table name"
       		exit;
-      elif [[ -f "$HOME/db/Databases/$ctdb/metadata/$tname" ]] & [[ -f "$HOME/db/Databases/$ctdb/Data/$tname" ]]                  #Third check 
+      elif [ -f metadata/$tname ] & [ -f Data/$tname ]                 #Third check 
       then
 
 	    	  echo "ERROR: the table is already exists"
 		  exit;
       else    
 
-            touch $HOME/db/Databases/$ctdb/Data/$tname                        #create file
-            touch $HOME/db/Databases/$ctdb/metadata/$tname 
+            touch Data/$tname                        #create file
+            touch metadata/$tname 
             echo "congrats your table is created successfully"
       fi
 else
@@ -47,7 +47,7 @@ do
       else
             colmeta=$colname
       fi
-      read -p "choice column data type string(s) number(n) [s:n]    " coldatatype
+      read -p "choose column data type string(s) number(n) [s:n]    " coldatatype
       case $coldatatype in 
 			      "s" | "S") 
                  			 colmeta=$colmeta:string 
@@ -65,8 +65,7 @@ do
 			       		 colmeta=$colmeta:no
                  				 ;;
       esac
-echo $colmeta >> $HOME/db/Databases/$ctdb/metadata/$tname 
-
+echo $colmeta >> metadata/$tname s
 done
 
 

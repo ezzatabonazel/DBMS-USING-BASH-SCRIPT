@@ -10,14 +10,14 @@ then
 	then	
 		echo " invalid Database name "
 
-	elif [ -d $HOME/db/Databases/$dbname ]
+	elif [ -d	./Databases/$dbname ]
 	then 
 		echo "this Database is already exists"
 	else
 		
-		mkdir $HOME/db/Databases/$dbname
-		mkdir $HOME/db/Databases/$dbname/Data
-		mkdir $HOME/db/Databases/$dbname/metadata
+		mkdir ./Databases/$dbname
+		mkdir ./Databases/$dbname/Data
+		mkdir ./Databases/$dbname/metadata
 
 		echo "your Database is created successfully"
 	fi

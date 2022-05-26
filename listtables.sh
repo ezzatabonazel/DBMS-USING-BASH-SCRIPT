@@ -1,9 +1,9 @@
 #!/bin/bash	
 
 
-if  [ -n  "$(ls  $HOME/db/Databases/$ctdb/Data)" ]
+if  [ -n  "$(ls  Data/)" ]
 then
-	ls $HOME/db/Databases/$ctdb/Data
+	ls Data/
 
 else 
 	echo " No Tables created yet "

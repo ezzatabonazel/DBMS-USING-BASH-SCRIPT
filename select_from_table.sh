@@ -10,10 +10,10 @@ then
             do
                 case $REPLY in
                 1)
-                        . displaytable.sh
+                        . ./displaytable.sh
                             ;;
                 2)
-                        . selectwithpk.sh  
+                        . ./selectwithpk.sh  
                             ;;
                 esac
             done

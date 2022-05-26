@@ -2,10 +2,10 @@
 
 read -p " Database name : " ctdb #connect to db
 
-if [ -d $HOME/db/Databases/$ctdb ]
+if [ -d ./Databases/$ctdb ]
 then
 	
-	cd $HOME/db/Databases/$ctdb
+	cd ./Databases/$ctdb
 	select c in " create table " "List Tables" "Drop Table" "Insert into Table" "Select From Table" "Delete From Table" "Update Table" "exit"
 	do
 		case $REPLY in
@@ -22,7 +22,7 @@ then
 				 echo soon
                                 ;;
 			5) 
-				select_from_table.sh
+				. select_from_table.sh
                                 ;;
 			6)
 				 echo soon
@@ -33,6 +33,9 @@ then
 			8)
 				exit
 				 ;;
+			*)
+				echo "wrong choice :(" 
+				;;
  		 esac
 	done 	
 else 
