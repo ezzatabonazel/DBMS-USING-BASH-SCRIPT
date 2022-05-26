@@ -9,25 +9,26 @@ then
 		case $REPLY in
 			1)
 				. ./createtable.sh
-				 break
+				 
 				;;
 			2)
                  . ./listtables.sh
-				 	break
+				 	
 				;;
 			3) 
 				.  ./droptable.sh
-					break
+					
 				;;
 			4) 
 				 echo soon
                                 ;;
 			5) 
 				. ./select_from_table.sh
-						break
+						
                                 ;;
 			6)
-				 echo soon
+				. ./deletefromtable.sh
+				
                                 ;;
 			7)
 				 echo soon

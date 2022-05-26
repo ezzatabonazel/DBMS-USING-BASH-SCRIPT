@@ -1,8 +1,8 @@
 #!/bin/bash
 
 	#chnage output record seperator by default is new line
-awk -F: 'BEGIN {ORS=":"}{print $1}' metadata/$tablename
+awk -F: 'BEGIN {ORS=":"}{print $1}' ./Databases/$ctdb/metadata/$tablename
 
 printf "\n"
 
-cat Data/$tablename
+cat ./Databases/$ctdb/Data/$tablename

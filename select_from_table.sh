@@ -6,7 +6,7 @@ if ! [ -z $tablename ]
 then
         if [ -f ./Databases/$ctdb/Data/$tablename ] 
         then
-            select	i in "select all" "select with pk" 
+            select	i in "select all" "select with pk" "PERVIOUS MENU" "QUIT"
             do
                 case $REPLY in
                 1)
@@ -15,6 +15,11 @@ then
                 2)
                         . ./selectwithpk.sh  
                             ;;
+                 4)      exit 
+                        ;;
+                *) 
+                        echo "wrong choice :("
+                        ;;
                 esac
             done
         else 

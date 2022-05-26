@@ -18,11 +18,12 @@
     #fi
 #done
 #cat $HOME/db/Databases/ezzat/Data/xx | grep -w $pk
-fn=2
+RN=2
 #awk -F: '{if($3==$pk){print $0 ;}}' /$HOME/db/Databases/ezzat/metadata/xx
 
 #awk -F: -v awkvar="$fn" '{if(NR=awkvar){print $2;}}' $HOME/db/Databases/ezzat/metadata/ezzat
 #awk -F: -v awkvar="$fn" ' NR== awkvar {print $2;}' $HOME/db/Databases/ezzat/metadata/ezzat
 
 
-sed -e "$fn"'d'  ./Databases/ezzat/Data/xx
+#  ./Databases/ezzat/Data/x
+cut  -d: -f"$RN" --complement ./Databases/ezzat/Data/xx
