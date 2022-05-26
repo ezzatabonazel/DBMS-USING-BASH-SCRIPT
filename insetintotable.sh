@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #function to insert a row in table data file
 
 function insertrow{

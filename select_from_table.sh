@@ -4,7 +4,7 @@ read -p " Enter Table Name : " tablename
 
 if ! [ -z $tablename ]
 then
-        if [ -f Data/$tablename ] 
+        if [ -f ./Databases/$ctdb/Data/$tablename ] 
         then
             select	i in "select all" "select with pk" 
             do
