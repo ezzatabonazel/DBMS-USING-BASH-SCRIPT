@@ -31,7 +31,7 @@ then
 				
                                 ;;
 			7)
-				 echo soon
+				 . ./updatecell.sh
 				 ;;
 			8)
 				exit

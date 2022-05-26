@@ -3,7 +3,7 @@
 # Get the table name from user 
 read -p "what is your table name : " tname 
 
-if ! [ -z $tname ]                                                      #first check
+if ! [ -f $tname ]                                                      #first check
 then
       if [[ $tname =~ ^[0-9] ]]                                          #second check 
       then
