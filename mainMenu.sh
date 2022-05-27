@@ -7,22 +7,22 @@ do
 
 			1 )
 			       	./createdb.sh
-					   break
+					   
 				;;
 			2)
 				./connectdb.sh
-					break
+					
 				;;
 
 			3)
 		
 			 	 ./listdb.sh
-				  	break
+				  	
                 	        ;;
 			4)
 
                 	./deletedb.sh
-						break
+						
                        		 ;;
 			 5)  
 				 exit
