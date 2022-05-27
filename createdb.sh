@@ -1,28 +1,32 @@
 #!/bin/bash
 
-read -p " what is your Datebase name : " dbname
+LC_ALL=C
+shopt -s extglob
 
-if ! [ -z $dbname ]
-then 
-	#check of DBname does't begin with number and at least contain one character
+while true :
+do
 
-	if  [[ $dbname =~ ^[0-9] ]]
-	then	
-		echo " invalid Database name "
+	read -p " what is your Datebase name : " dbname
 
-	elif [ -d	./Databases/$dbname ]
+	if ! [ -z $dbname ]
 	then 
-		echo "this Database is already exists"
-	else
+	#check of DBname does't begin with number and at least contain one character
+			case $dbname in
+					+([a-zA-Z]) )		
+						mkdir ./Databases/$dbname
+						mkdir ./Databases/$dbname/Data
+						mkdir ./Databases/$dbname/metadata
+						echo "your Database is created successfully"
+						break
+						;;
+					*)
+						echo "invalid Database name ,must contain only characters :)"
+						;;
+			esac
 		
-		mkdir ./Databases/$dbname
-		mkdir ./Databases/$dbname/Data
-		mkdir ./Databases/$dbname/metadata
-
-		echo "your Database is created successfully"
-	fi
-else	
+	else	
 
 	echo "PLEASE ENTER A NAME FOR YOUR DATABASE"
-fi
+	fi
 
+done
