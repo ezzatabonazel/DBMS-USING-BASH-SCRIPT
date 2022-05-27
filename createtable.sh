@@ -1,53 +1,81 @@
 #!/bin/bash
 
+LC_ALL=C
+shopt -s extglob
 # Get the table name from user 
+while true :
+do
 read -p "what is your table name : " tname 
 
-if ! [ -f $tname ]                                                      #first check
-then
-      if [[ $tname =~ ^[0-9] ]]                                          #second check 
+      if ! [ -z $tname ]                                                      #first check
       then
 
-         echo " ERROR: invalid table name"
-      		exit;
-      elif [ -f ./Databases/$ctdb/metadata/$tname ] & [ -f ./Databases/$ctdb/Data/$tname ]                 #Third check 
-      then
+            if [ -f ./Databases/$ctdb/metadata/$tname ] & [ -f ./Databases/$ctdb/Data/$tname ]                 #Third check 
+            then
 
-	    	  echo "ERROR: the table is already exists"
-		  exit;
-      else    
+	    	        echo "ERROR: the table is already exists"
+		            continue
+            else    
+                  case $tname in
+	            +([a-zA-Z]) )
 
-            touch ./Databases/$ctdb/Data/$tname                        #create file
-            touch ./Databases/$ctdb/metadata/$tname
-            echo "congrats your table is created successfully"
+                  touch ./Databases/$ctdb/Data/$tname                        #create file
+                  touch ./Databases/$ctdb/metadata/$tname
+                        ;;
+                  *)
+                        echo "invalid table name, must contain only characters :)"
+                         continue
+                                    ;;   
+                  esac
       fi
+
+
+
 else
     echo "ERROR: Table name can not be empty"
-                exit
+                continue
 
 fi
 
 # creat column 
 
+while true :
+do
 read -p " Enter number of columns: " colnum
+case $colnum in
+            +([0-9]) )
+                        break 
+                        ;;
 
+            *) continue
+            ;;
+esac
+done
 
 for ((i=0;  i<colnum ; i++))
 do
-      colmeta=""
-      
-            read -p "enter column name : " colname
-      if [ -z $colname ]
-      then 
-            echo " colname cannot be empty "
-	    break;
-      elif [[ $colname =~ ^[0-9] ]]
-      then 
-            echo "Colname is not correct "
-	    break;
-      else
-            colmeta=$colname
-      fi
+            ((j=$i+1))
+            colmeta=""
+            while true :
+            do
+                 read -p "enter column $j name : " colname
+                  if [ -z $colname ]
+                  then 
+                        echo " colname cannot be empty "
+	                  continue
+                  else 
+                        case $colname in
+	                        +([a-zA-Z]) )
+                               colmeta=$colname 
+                               break 
+                               ;; 
+                               *)
+                              echo "Colname is not correct , must contain only characters"
+                                    continue
+                                    ;;
+                        esac
+                  fi
+            done      
       while true :
       do
             read -p "choose column data type string(s) number(n) [s:n]    " coldatatype
@@ -85,6 +113,8 @@ do
             esac
       done
 echo $colmeta >> ./Databases/$ctdb/metadata/$tname 
+echo "congrats your table is created successfully"
 done
-
+break 
+done
 
