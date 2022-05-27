@@ -6,7 +6,7 @@ if ! [ -z $tablename ]
 then
         if [ -f ./Databases/$ctdb/Data/$tablename ] 
         then
-            select	i in "DELETE RECORD" "DELETE COLUMN" "PERVIOUS MENU" "QUIT"
+            select	i in "DELETE RECORD" "DELETE COLUMN" "QUIT"
             do
                 case $REPLY in
                 1)
@@ -15,10 +15,9 @@ then
                 2)
                         . ./deletecolunm.sh 
                             ;;
-                3)    . ./connectdb.sh
+                3)              exit
                             ;;
-                4)      exit 
-                        ;;
+        
                 *) 
                         echo "wrong choice :("
                         ;;

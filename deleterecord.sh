@@ -11,9 +11,9 @@ do
                 then    
               
                          
-                         sed "${RN} d"  ./Databases/$ctdb/Data/$tablename > ./Databases/$ctdb/Data/$tablename.new      
+                        sed "${RN} d"  ./Databases/$ctdb/Data/$tablename > ./Databases/$ctdb/Data/$tablename.new      
                         mv ./Databases/$ctdb/Data/$tablename.new ./Databases/$ctdb/Data/$tablename 
-                         echo "This Record Deletad Successfully"
+                        echo "This Record Deletad Successfully"
                                         break  2
                 fi       
         done

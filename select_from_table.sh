@@ -11,15 +11,16 @@ then
                 case $REPLY in
                 1)
                         . ./displaytable.sh
-                            ;;
+                                 ;;
                 2)
                         . ./selectwithpk.sh  
-                            ;;
-                 4)      exit 
-                        ;;
+                                ;;
+                3)      
+                              exit 
+                                ;;
                 *) 
                         echo "wrong choice :("
-                        ;;
+                                ;;
                 esac
             done
         else 
