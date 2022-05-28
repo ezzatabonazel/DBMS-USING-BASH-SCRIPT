@@ -20,7 +20,7 @@ then
 					
 				;;
 			4) 
-				 echo soon
+				. ./insertnew.sh
                                 ;;
 			5) 
 				. ./select_from_table.sh
