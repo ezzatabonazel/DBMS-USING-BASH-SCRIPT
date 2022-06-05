@@ -5,17 +5,19 @@
 deleterecord(){
 while true :
 do    
-        for i in `cut -f"$RN" -d: ./Databases/$ctdb/Data/$tablename`
+	typeset -i Rlocation                    #record location in data table
+	Rlocation=0
+
+        for values in `cut -f"$RN" -d: Databases/$ctdb/Data/$tablename`
         do 
-                if [[ $i -eq $pk ]]
-                then    
-              
-                         
-                        sed "${RN} d"  ./Databases/$ctdb/Data/$tablename > ./Databases/$ctdb/Data/$tablename.new      
-                        mv ./Databases/$ctdb/Data/$tablename.new ./Databases/$ctdb/Data/$tablename 
-                        echo "This Record Deletad Successfully"
+			 Rlocation+=1
+		      if [ $values == $pk ]
+		      then
+                        	sed "${Rlocation} d"  Databases/$ctdb/Data/$tablename > Databases/$ctdb/Data/$tablename.new      
+                        	mv Databases/$ctdb/Data/$tablename.new Databases/$ctdb/Data/$tablename 
+                       		echo "This Record Deletad Successfully"
                                         break  2
-                fi       
+           	     fi       
         done
 echo "THIS ENTRY DOESN'T EXIST IN DATA"
 break
