@@ -1,11 +1,9 @@
 #!/bin/bash
 
-pkRN=`awk -F: '{if($3=="yes"){print NR ;}}' ./Databases/$ctdb/metadata/$tablename`                #get RECORD NUMBER of pk
-pkdatatype=`awk -F: -v awkvar="$pkRN" ' NR==awkvar {print $2;}' ./Databases/$ctdb/metadata/$tablename`        #get data type of pk
-
-
 validatepkvalue(){
-    valid=0  #true
+    
+valid=0  #true
+
 
 case $pkdatatype in                                   #match if input match datatype of pk colunm
 
@@ -61,9 +59,9 @@ do
             break 
       fi
 done
-awk -F: -v awkvar="$Rlocation" -v newvalue="$cellvalue" -v f="$RN" '{if(NR==awkvar)
+awk -F: -v awkvar="$Rlocation" -v newvalue="$cellvalue" -v fn="$RN" '{if(NR==awkvar)
 {for(i=1;i<NF;i++)
-{if(i=f)
+{if(i=fn)
 {gsub($i,newvalue)
 }
 }
@@ -77,7 +75,8 @@ fi
 }
 
 read -p " what is your table name : " tablename
-if [ -z $tablename ]
+
+if [[ -z $tablename ]]
 then 
         echo " can not be empty "
 
@@ -88,6 +87,9 @@ then
 else    
 while true :
 do        
+pkRN=`awk -F: '{if($3=="yes"){print NR ;}}' ./Databases/$ctdb/metadata/$tablename`                #get RECORD NUMBER of pk
+pkdatatype=`awk -F: -v awkvar="$pkRN" ' NR==awkvar {print $2;}' ./Databases/$ctdb/metadata/$tablename`        #get data type of pk
+
         read -p "what is colunm name you want to update " colname
 
         for i in `cut -f1 -d: ./Databases/$ctdb/metadata/$tablename`

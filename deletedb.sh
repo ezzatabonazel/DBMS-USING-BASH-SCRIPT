@@ -3,7 +3,7 @@
 
 read -p "What is the Database name : " name
 
-if  [ -z $name ]
+if  [[ -z $name ]]
 then 
 	echo "YOU MUST ENTER A NAME"
 elif [ -d ./Databases/$name ]

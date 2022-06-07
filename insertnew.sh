@@ -23,7 +23,7 @@ gettablename() {
 while true :
 do
 read -p "enter table name : "  tablename
-if [ -z $tablename ]
+if [[ -z $tablename ]]
 then  
       echo " table name can not be empty "
 else
@@ -38,19 +38,17 @@ fi
 done   
 }
 gettablename 
-echo "this is column names "
-tabledata=""
+echo "this is column names of this table"
 awk -F: 'BEGIN{ORS="\t"}{print $1}END{printf "\n"}' Databases/$ctdb/metadata/$tablename
-echo "insert your data by order of column names " 
-for colname in `awk -F: 'BEGIN{ORS="\t"}{print $1}' Databases/$ctdb/metadata/$tablename` 
+for colname in `awk -F: '{print $1}' Databases/$ctdb/metadata/$tablename` 
 do 
 fn=`awk -F: -v name="$colname" '{if($1==name ){print NR}}' Databases/$ctdb/metadata/$tablename`  
 
 
 while true :
 do
-        read -p "enter data of colunm '$colname' : " rowdata
-        if [ -z $rowdata ]
+        read -p "enter the value of colunm '$colname' : " rowdata
+        if [[ -z $rowdata ]]
         then 
                 echo "this field can not be empty "
                 continue
@@ -109,5 +107,6 @@ done
 done
 echo "$tabledata"| awk -F: '{sub(":","");print $0}' >> Databases/$ctdb/Data/$tablename
 echo " your record is inserted successfully :) "
+tabledata=""
 
 

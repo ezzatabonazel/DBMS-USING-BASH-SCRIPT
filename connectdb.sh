@@ -2,9 +2,13 @@
 
 read -p " Database name : " ctdb #connect to DB
 
-if [ -d ./Databases/$ctdb ]
+if [[ -z $ctdb ]]
+then 
+		echo "ERROR: Empty Entry"
+elif [ -d ./Databases/$ctdb ]
 then
-	select c in " create table " "List Tables" "Drop Table" "Insert into Table" "Select From Table" "Delete From Table" "Update Table" "exit"
+	PS3="$ctdb >> "
+	select c in "create table " "List Tables" "Drop Table" "Insert into Table" "Select From Table" "Delete From Table" "Update Table" "Pervious Menu" "exit"
 	do
 		case $REPLY in
 			1)
@@ -33,7 +37,10 @@ then
 			7)
 				 . ./updatecell.sh
 				 ;;
-			8)
+			8) 
+				
+				break;;
+			9)
 				exit
 				 ;;
 			*)

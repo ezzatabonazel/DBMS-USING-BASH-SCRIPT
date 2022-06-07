@@ -6,7 +6,9 @@ if ! [ -z $tablename ]
 then
         if [ -f ./Databases/$ctdb/Data/$tablename ] 
         then
-            select	i in "DELETE RECORD" "DELETE COLUMN" "QUIT"
+                        PS3="$ctdb:$tablename $> "
+
+            select	i in "DELETE RECORD" "DELETE COLUMN" "PREVIOUS MENU" "QUIT"
             do
                 case $REPLY in
                 1)
@@ -15,7 +17,12 @@ then
                 2)
                         . ./deletecolunm.sh 
                             ;;
-                3)              exit
+                3)
+                        	PS3="$ctdb >> "
+                                break
+                                ;;
+
+                4)              exit
                             ;;
         
                 *) 
